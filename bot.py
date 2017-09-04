@@ -6,7 +6,7 @@ import pickle
 import asyncio
 
 
-DISCORD_BOT_KEY = 'MzUzNzA1OTIxNjE4MTE2NjA5.DIzl1A.jwiFMZ63i_D9jn4k31whkVqPw6c'
+DISCORD_BOT_KEY = gentenv('DISCORD_TOKEN')
 DISCORD_CHANNELS = [241014195884130315]
 REDIS_URL = getenv('REDIS_URL')
 TIMER = 24 # hours
