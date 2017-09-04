@@ -7,7 +7,7 @@ import asyncio
 
 
 DISCORD_BOT_KEY = getenv('DISCORD_TOKEN')
-DISCORD_CHANNELS = [241014195884130315]
+DISCORD_CHANNELS = [241014195884130315, 271095863194025993]
 REDIS_URL = getenv('REDIS_URL')
 TIMER = 24 # hours
 RESET_ON_LOAD = False
@@ -41,11 +41,11 @@ async def check_timers(delay=60):
             time_left = TIMER * 3600 + user_time - time()
 
             if time_left < 0:
-                del storage.users.data[user_id]
+                del users.data[user_id]
                 users.save()
                 for chan_id in DISCORD_CHANNELS:
                     channel = Object(id=chan_id)
-                    user = User(id=user_id)
+                    user = await client.get_user_info(user_id)
                     await client.send_message(channel, "The timer of %s is finished !" % user.name)
                 await client.send_message(user, "Your timer is finished! It has been removed.")
 
