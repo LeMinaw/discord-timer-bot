@@ -45,7 +45,7 @@ async def check_timers(delay=60):
                 users.save()
                 for chan_id in DISCORD_CHANNELS:
                     channel = Object(id=chan_id)
-                    user = User(id=user_id)
+                    user = await client.get_user_info(user_id)
                     await client.send_message(channel, "The timer of %s is finished !" % user.name)
                 await client.send_message(user, "Your timer is finished! It has been removed.")
 
