@@ -41,7 +41,7 @@ async def check_timers(delay=60):
             time_left = TIMER * 3600 + user_time - time()
 
             if time_left < 0:
-                del storage.users.data[user_id]
+                del users.data[user_id]
                 users.save()
                 for chan_id in DISCORD_CHANNELS:
                     channel = Object(id=chan_id)
